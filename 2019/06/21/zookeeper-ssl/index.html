@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zookeeper-ssl | Hexo</title>
+  <title>Setting SSL for Zookeeper | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="zookeeper,ssl">
+  <meta name="description" content="Reference Links Download from: https://archive.apache.org/dist/zookeeper/,  stable version not support ssl, so please download zookeeper-3.5.0-alpha/ Zookeeper working with Kazoo: https://medium.com/@">
+<meta name="keywords" content="zookeeper,ssl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zookeeper-ssl">
+<meta property="og:title" content="Setting SSL for Zookeeper">
 <meta property="og:url" content="http://yoursite.com/2019/06/21/zookeeper-ssl/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Reference Links Download from: https://archive.apache.org/dist/zookeeper/,  stable version not support ssl, so please download zookeeper-3.5.0-alpha/ Zookeeper working with Kazoo: https://medium.com/@">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-21T05:16:23.309Z">
+<meta property="og:updated_time" content="2019-06-21T09:38:36.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zookeeper-ssl">
+<meta name="twitter:title" content="Setting SSL for Zookeeper">
+<meta name="twitter:description" content="Reference Links Download from: https://archive.apache.org/dist/zookeeper/,  stable version not support ssl, so please download zookeeper-3.5.0-alpha/ Zookeeper working with Kazoo: https://medium.com/@">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      zookeeper-ssl
+      Setting SSL for Zookeeper
     </h1>
   
 
@@ -172,7 +175,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="Reference-Links"><a href="#Reference-Links" class="headerlink" title="Reference Links"></a>Reference Links</h3><ul>
+<li>Download from: <a href="https://archive.apache.org/dist/zookeeper/" target="_blank" rel="noopener">https://archive.apache.org/dist/zookeeper/</a>,  stable version <strong>not</strong> support ssl, so please download <em>zookeeper-3.5.0-alpha/</em></li>
+<li>Zookeeper working with Kazoo: <a href="https://medium.com/@md.tsai/%E7%82%BA-zookeeper-%E8%A8%AD%E5%AE%9A%E5%8A%A0%E5%AF%86%E9%80%A3%E7%B7%9A-11702097f859" target="_blank" rel="noopener">https://medium.com/@md.tsai/%E7%82%BA-zookeeper-%E8%A8%AD%E5%AE%9A%E5%8A%A0%E5%AF%86%E9%80%A3%E7%B7%9A-11702097f859</a>, mainly refer this page</li>
+<li>Official guide: <a href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZooKeeper+SSL+User+Guide" target="_blank" rel="noopener">https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZooKeeper+SSL+User+Guide</a></li>
+</ul>
+<h3 id="Details-and-steps"><a href="#Details-and-steps" class="headerlink" title="Details and steps"></a>Details and steps</h3><h3 id="zookeeper-configure"><a href="#zookeeper-configure" class="headerlink" title="zookeeper configure"></a>zookeeper configure</h3><ul>
+<li><p>start zookeeper <em>tar -zxvf zookeeper.tar.gz</em>, check status of  zookeeper by <em>bin/zkServer.sh status</em>, copy <em>conf/zoo.sample.cfg</em> to <em>conf/zoo.cfg</em>,zookeeper will auto read this file to start</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>test the connection of zookeeper works</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli.sh -server localhost:2181</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="zookeeper-with-SSL"><a href="#zookeeper-with-SSL" class="headerlink" title="zookeeper with SSL"></a>zookeeper with SSL</h3><ul>
+<li><p>setting env variable under <em>bin/zkEnv.sh</em></p>
+<ul>
+<li><p>comment out the origin line <em>export SERVER_JVMFLAGS ….</em></p>
+</li>
+<li><p>add this for the new line - for the zookeeper <strong>server</strong></p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ZK_SERVER_SSL=<span class="string">"-Dzookeeper.serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.keyStore.location=/home/li/Documents/zoo-ssl/ssl-conf/keystore.jks </span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.keyStore.password=yourpass</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.trustStore.location=/home/li/Documents/zoo-ssl/ssl-conf/keystore.jks</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.trustStore.password=yourpass"</span></span><br><span class="line"><span class="built_in">export</span> SERVER_JVMFLAGS=<span class="string">"-Xmx<span class="variable">$&#123;ZK_SERVER_HEAP&#125;</span>m <span class="variable">$ZK_SERVER_SSL</span> <span class="variable">$SERVER_JVMFLAGS</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>comment out the origin line <em>export CLIENT_JVMFLAGS …</em></p>
+</li>
+<li><p>add this for the new line - for the zookeeper <strong>client</strong></p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ZK_CLIENT_SSL=<span class="string">"-Dzookeeper.serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.keyStore.location=/home/li/Documents/zoo-ssl/ssl-conf/keystore.jks </span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.keyStore.password=yourpass</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.trustStore.location=/home/li/Documents/zoo-ssl/ssl-conf/keystore.jks</span></span><br><span class="line"><span class="string">-Dzookeeper.ssl.trustStore.password=yourpass"</span></span><br><span class="line"><span class="built_in">export</span> CLIENT_JVMFLAGS=<span class="string">"-Xmx<span class="variable">$&#123;ZK_CLIENT_HEAP&#125;</span>m <span class="variable">$ZK_CLIENT_SSL</span> <span class="variable">$CLIENT_JVMFLAGS</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>add a <em>secureClientPort</em> for <em>conf/zoo.cfg</em></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secureClientPort=2281</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>restart the zookeeper by</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>test the connection by</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli.sh -server 127.0.0.1:2281</span><br></pre></td></tr></table></figure>
+
+<p>  now we use the <strong>secureClientPort</strong> 2281</p>
+</li>
+</ul>
+<h3 id="generate-keys-of-jks-and-pem-format"><a href="#generate-keys-of-jks-and-pem-format" class="headerlink" title="generate keys of jks and pem format"></a>generate keys of jks and pem format</h3><ul>
+<li><p>generate keystore.jks example</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -<span class="built_in">alias</span> name1 -keyalg RSA -keysize 2048 -keypass password -storepass password -validity 9999 -keystore keystore.jks -ext SAN=DNS:localhost,IP:127.0.0.1</span><br><span class="line"></span><br><span class="line">keytool -genkeypair -<span class="built_in">alias</span> zookeeper-ssl -keyalg RSA -keysize 2048 -keypass aaaaaa -storepass yourpass -validity yourpass -keystore keystore.jks -ext SAN=DNS:localhost,IP:127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>  or enter password with interation</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -keyalg RSA -<span class="built_in">alias</span> zookeeper-ssl -keystore keystore.jks -validity 9999 -keysize 2048</span><br></pre></td></tr></table></figure>
+
+<p>  then you can use the zookeeper ssl with this key, the <em>keypass</em> and <em>storepass</em> should be same one, otherwise it will use the storepass.</p>
+</li>
+<li><p>Since kazoo don’t support jks, we need to transfer x.jks to x.pkcs12, then to the x.pem</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -srcalias zookeeper-ssl -srcstoretype jks -deststoretype pkcs12</span><br></pre></td></tr></table></figure>
+
+<p>  the source password is the password of x.jks, convert x.jks to x.pkcs12 by</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -srcalias zookeeper-ssl -srcstoretype jks -deststoretype pkcs12</span><br></pre></td></tr></table></figure>
+
+<p>  pay attention to the <em>srcalias</em></p>
+<p>  convert x.pkcs12 to x.pem by</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -in keystore.p12 -out keystore.pem</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Kazoo : Kazoo implements the Zookeeper protocol in pure Python, so you don’t need any Python Zookeeper C bindings installed.</p>
+<p>  <a href="https://kazoo.readthedocs.io/en/latest/api/client.html" target="_blank" rel="noopener">https://kazoo.readthedocs.io/en/latest/api/client.html</a></p>
+</li>
+</ul>
+<pre><code><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zk = KazooClient(hosts=<span class="string">'IP:SEC_PORT'</span>, use_ssl=<span class="literal">True</span>, verify_certs=<span class="literal">False</span>, keyfile=<span class="string">'path/to/keystore.pem'</span>, certfile=<span class="string">'path/to/keystore.pem'</span>, keyfile_password=<span class="string">"password"</span>)</span><br></pre></td></tr></table></figure></code></pre>
       
 
       
@@ -414,14 +480,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bayesian</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Isolate Forest</a>
               </li>
              
@@ -430,11 +488,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+                <a href="javascript:void(0)" class="js-tag color3">ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bayesian</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">boosting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,6 +513,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,10 +549,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
             
             <div class="clearfix"></div>
