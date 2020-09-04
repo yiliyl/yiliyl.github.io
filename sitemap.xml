@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/09/04/kata-container/</loc>
+    
+    <lastmod>2020-09-04T08:09:41.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/09/04/perf-stat/</loc>
+    
+    <lastmod>2020-09-04T07:59:21.732Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/09/04/container-communication-coss-host-by-swarm/</loc>
+    
+    <lastmod>2020-09-04T07:23:45.488Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/09/02/container-communication-corss-host-by-flannel/</loc>
+    
+    <lastmod>2020-09-04T07:23:35.514Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/09/02/etcd/</loc>
+    
+    <lastmod>2020-09-04T01:26:14.444Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/06/21/avx512/</loc>
+    
+    <lastmod>2020-09-02T07:35:03.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/06/21/gdbt/</loc>
+    
+    <lastmod>2019-06-27T06:10:07.686Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/06/21/kafka/</loc>
+    
+    <lastmod>2019-06-25T03:08:53.838Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/06/21/prometheus/</loc>
     
     <lastmod>2019-06-24T03:03:10.943Z</lastmod>
@@ -23,13 +79,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/21/avx512/</loc>
-    
-    <lastmod>2019-06-21T05:31:00.231Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2019/06/21/kaggle/</loc>
     
     <lastmod>2019-06-21T05:30:47.787Z</lastmod>
@@ -40,13 +89,6 @@
     <loc>http://yoursite.com/2019/06/21/git/</loc>
     
     <lastmod>2019-06-21T05:29:35.487Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/06/21/etcd/</loc>
-    
-    <lastmod>2019-06-21T05:29:24.915Z</lastmod>
     
   </url>
   
@@ -93,23 +135,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/21/gdbt/</loc>
-    
-    <lastmod>2019-06-21T05:23:16.407Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2019/06/21/EM/</loc>
     
     <lastmod>2019-06-21T05:22:53.411Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/06/21/kafka/</loc>
-    
-    <lastmod>2019-06-21T05:15:30.356Z</lastmod>
     
   </url>
   

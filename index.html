@@ -7,17 +7,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>路过看看</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="路过看看">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="路过看看">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="路过看看">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="路过看看" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,28 +50,40 @@
 		  <h1 class="header-author"><a href="/">Yi Li</a></h1>
 		</hgroup>
 		
+		<p class="header-subtitle">歇歇再走</p>
+		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="/">Home</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/docker/">Docker</a></li>
+	        
+				<li><a href="/tags/kata">Kata</a></li>
+	        
+				<li><a href="/tags/prometheus/">Prometheous</a></li>
+	        
+				<li><a href="/tags/zookeeper">ZooKeeper</a></li>
+	        
+				<li><a href="/tags/flannel/">Flannel</a></li>
+	        
+				<li><a href="/tags/swarm">Swarm</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">Archive</a>
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">Archive目录</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Links</a>
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Links友链</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">Aboutme</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">Aboutme我</a>
     			
             
 		</nav>
@@ -108,7 +120,19 @@
 			  <h1 class="header-author js-header-author">Yi Li</h1>
 			</hgroup>
 			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>歇歇再走<i class="icon icon-quo-right"></i></p>
 			
+			
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
 			
 				
 			
@@ -131,12 +155,22 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">Home</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/docker/">Docker</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/kata">Kata</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/prometheus/">Prometheous</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/zookeeper">ZooKeeper</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/flannel/">Flannel</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/swarm">Swarm</a></li>
 		        
 				</ul>
 			</nav>
@@ -152,6 +186,709 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-kata-container" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/04/kata-container/">Kata Container — VM with conatiner APIs</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/04/kata-container/" class="archive-article-date">
+  	<time datetime="2020-09-04T07:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="kata-environment"><a href="#kata-environment" class="headerlink" title="kata environment"></a>kata environment</h2><ul>
+<li><p>install kata on centos7</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">source /etc/os-release</span><br><span class="line"></span><br><span class="line">sudo yum -y install yum-utils</span><br><span class="line"></span><br><span class="line">sudo -E yum-config-manager --add-repo <span class="string">"http://download.opensuse.org/repositories/home:/katacontainers:/releases:/$&#123;ARCH&#125;:/$&#123;BRANCH&#125;/CentOS_7/home:katacontainers:releases:$&#123;ARCH&#125;:$&#123;BRANCH&#125;.repo"</span></span><br><span class="line"></span><br><span class="line">e.g.</span><br><span class="line"></span><br><span class="line">sudo -E yum-config-manager --add-repo <span class="symbol">http:</span>/<span class="regexp">/download.opensuse.org/repositories</span><span class="regexp">/home:/katacontainers</span><span class="symbol">:/releases</span><span class="symbol">:/x86_64</span><span class="symbol">:/master/CentOS_7/home</span><span class="symbol">:katacontainers</span><span class="symbol">:releases</span><span class="symbol">:x86_64</span><span class="symbol">:master</span>.repo</span><br><span class="line"></span><br><span class="line">sudo -E yum -y install kata-runtime kata-proxy kata-shim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>check kata status</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kata-runtime kata-check</span><br><span class="line"></span><br><span class="line">System is capable of running Kata Containers</span><br><span class="line">System can currently create Kata Containers</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>configure kata</p>
+</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kata-<span class="string">path:</span> <span class="regexp">/usr/</span>bin/kata-runtime</span><br><span class="line">kata-<span class="string">config:</span>  <span class="regexp">/usr/</span>share<span class="regexp">/defaults/</span>kata-containers/configuration.toml</span><br></pre></td></tr></table></figure>
+
+<p><em>Sandbox_cgroup_only -&gt; true</em>  <a href="https://github.com/kata-containers/documentation/blob/74ebc0945ed33817f851c12a0dbf0c37632d161a/design/host-cgroups.md" target="_blank" rel="noopener">Host cgroup management<br>-include kata-qemu into kata cgroup taskset path</a></p>
+<p><em>default_vcpus = -1</em>   <a href="https://github.com/kata-containers/documentation/blob/89120e8d8a6429bd631126c9bf32cefb17cd5652/design/vcpu-handling.md" target="_blank" rel="noopener">to let cpuset-cpus work</a></p>
+<ul>
+<li>running docker/pouch with kata,<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi  <span class="meta-keyword">/etc/</span>docker/daemon.json </span><br><span class="line">vi <span class="meta-keyword">/etc/</span>pouch/config.json</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#docker daemon</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"runtimes"</span>: &#123;</span><br><span class="line">   <span class="attr">"kata-qemu"</span>: &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/usr/bin/kata-runtime"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pouch daemon</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"volume-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"network-config"</span>: &#123;</span><br><span class="line">        <span class="attr">"bridge-config"</span>: &#123;</span><br><span class="line">            <span class="attr">"bip"</span>: <span class="string">"192.168.38.1/24"</span>,</span><br><span class="line">            <span class="attr">"default-gateway"</span>: <span class="string">"192.168.38.1"</span>,</span><br><span class="line">            <span class="attr">"iptables"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"ipforward"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"userland-proxy"</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"cri-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"TLS"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"default-log-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"registry-service"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"add-runtime"</span>: &#123;</span><br><span class="line">        <span class="attr">"kata-qemu"</span>: &#123;</span><br><span class="line">            <span class="attr">"path"</span>: <span class="string">"/opt/kata/bin/kata-runtime"</span>,</span><br><span class="line">            <span class="attr">"runtimeArgs"</span>: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>check current runtime<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line">runtimes runc,kata-qemu</span><br><span class="line"><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="kata-usage"><a href="#kata-usage" class="headerlink" title="kata usage"></a>kata usage</h2><ul>
+<li><p>setting runtime when start a container, default runc</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d  -<span class="built_in">name</span> name1  <span class="comment">--runtime kata-qemu images1 cmd1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>default vcpu is 1 and default vmemory size is 2g, so you should setting when start a kata conatiner</p>
+</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d  -<span class="built_in">name</span> name1  <span class="comment">--runtime kata-qemu --cpus 8 -m 16g  images1 cmd1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">or</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">run</span> -d  -<span class="built_in">name</span> name1  <span class="comment">--runtime kata-qemu --cpu-period 100000 --cpu-quota 800000 -m 16g  images1 cmd1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>if you want to use the cpuset-cpus, you should also –cpus or –cpu-quota first, otherwise core pining will fail</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d  -name name1  --runtime kata-qemu --cpus <span class="number">8</span> --cpuset-cpus <span class="number">7</span><span class="number">-15</span> -m <span class="number">16</span>g  images1 cmd1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>if you want to check core pining really works, you can enter the container<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">exec</span> -it name1 /bin/bash   nproc</span><br><span class="line"></span><br><span class="line"><span class="number">8</span></span><br><span class="line"></span><br><span class="line">docker <span class="keyword">exec</span> -it name1 /bin/bash cat /<span class="keyword">proc</span>/self/status  |<span class="title"> grep</span> Cpus_allowed_list</span><br><span class="line"></span><br><span class="line">7-15</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">pouch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">kata</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">conatiner</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">perf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cgroup</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cycles</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cpuset</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/04/kata-container/">show all 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-perf-stat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/04/perf-stat/">How to use perf-stat to collect event of both runc and runv environment</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/04/perf-stat/" class="archive-article-date">
+  	<time datetime="2020-09-04T05:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="How-to-use-perf-stat"><a href="#How-to-use-perf-stat" class="headerlink" title="How to use perf stat"></a>How to use perf stat</h2><ul>
+<li>basic usage <a href="https://man7.org/linux/man-pages/man1/perf-stat.1.html" target="_blank" rel="noopener">man-perf</a></li>
+</ul>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perf stat [-e &lt;EVENT&gt; | --event=EVENT] [-a] &lt;command&gt;</span><br><span class="line">perf stat [-e &lt;EVENT&gt; | --event=EVENT] [-a] — &lt;command&gt; <span class="meta">[&lt;options&gt;]</span></span><br><span class="line">perf stat [-e &lt;EVENT&gt; | --event=EVENT] [-a] record [-o file] — &lt;command&gt; <span class="meta">[&lt;options&gt;]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>examples</p>
+<ul>
+<li><p>specify a PMU counter, and output every 5 seconds</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf <span class="built_in">stat</span> -e cycles -I 5000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>output to a file, and setting sep to ‘,’</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf<span class="selector-class">.csv</span>  -x , -I <span class="number">5000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if you want more details please use -vv</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf<span class="selector-class">.csv</span>  -x , -I <span class="number">5000</span> -vv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>specify pid</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf<span class="selector-class">.csv</span>  -x , -I <span class="number">5000</span>  -<span class="selector-tag">p</span> <span class="number">50082</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>specify docker runc cgroup, also should with system mode “-a”</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf.csv  -<span class="keyword">x</span> , -I <span class="number">5000</span> -G docker/b<span class="number">3</span>f<span class="number">9e0421</span>d<span class="number">084</span>a<span class="number">3</span>b<span class="number">02</span><span class="keyword">c</span><span class="number">811791214e932395</span>ed<span class="number">463560495</span><span class="keyword">ccc</span><span class="number">31e7</span>ce<span class="number">7</span>ead<span class="number">889</span>ac -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>specify pouch runc cgroup, also should with system mode “-a”</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf.csv  -<span class="keyword">x</span> , -I <span class="number">5000</span> -G <span class="keyword">default</span>/b<span class="number">3</span>f<span class="number">9e0421</span>d<span class="number">084</span>a<span class="number">3</span>b<span class="number">02</span><span class="keyword">c</span><span class="number">811791214e932395</span>ed<span class="number">463560495</span><span class="keyword">ccc</span><span class="number">31e7</span>ce<span class="number">7</span>ead<span class="number">889</span>ac -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>specify docker runv cgroup, also should with system mode “-a”</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles -o perf.csv  -<span class="keyword">x</span> , -I <span class="number">5000</span> -G docker/kata_b<span class="number">3</span>f<span class="number">9e0421</span>d<span class="number">084</span>a<span class="number">3</span>b<span class="number">02</span><span class="keyword">c</span><span class="number">811791214e932395</span>ed<span class="number">463560495</span><span class="keyword">ccc</span><span class="number">31e7</span>ce<span class="number">7</span>ead<span class="number">889</span>ac -a</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><em>check /sys/fs/cgroup/per_event/docker/xxx for cgroup path</em></p>
+</li>
+</ul>
+<ul>
+<li><p>no-aggr mode, so you can check details of every hyperthreading cores, this <strong>no-aggr</strong> shouldn’t work with cgroup or pid</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e cycles,instructions -o perf<span class="selector-class">.csv</span> -x , -I <span class="number">5000</span> -<span class="selector-tag">a</span> --no-aggr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for multi-plexing using an event group(3 fix counters + 4 other counters,no more than 4, otherwise a new envent group,the fix counters should be rewrite),e.g. -e {e1,e2,e3} -G c1</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e '&#123;inst_retired.any,cpu_clk_unhalted.<span class="keyword">thread</span>,cpu_clk_unhalted.ref_tsc,longest_lat_cache.miss,offcore_requests_outstanding.l3_miss_demand_dat<span class="built_in">a_rd</span>,offcore_requests.l3_miss_demand_dat<span class="built_in">a_rd</span>&#125;' -o perf.csv  -x , -I <span class="number">5000</span> -G docker/b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac -<span class="literal">a</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perf stat -e '&#123;inst_retired.any,cpu_clk_unhalted.thread,cpu_clk_unhalted.ref_tsc,longest_lat_cache.miss,offcore_requests_outstanding.l<span class="number">3</span>_miss_demand_data_rd,offcore_requests.l<span class="number">3</span>_miss_demand_data_rd&#125;,&#123;inst_retired.any,cpu_clk_unhalted.thread,cpu_clk_unhalted.ref_tsc,dtlb_load_misses.walk_pending,dtlb_store_misses.walk_pending,itlb_misses.walk_pending:GH,ept.walk_pending&#125;' -o perf.csv  -<span class="keyword">x</span> , -I <span class="number">5000</span> -G docker/b<span class="number">3</span>f<span class="number">9e0421</span>d<span class="number">084</span>a<span class="number">3</span>b<span class="number">02</span><span class="keyword">c</span><span class="number">811791214e932395</span>ed<span class="number">463560495</span><span class="keyword">ccc</span><span class="number">31e7</span>ce<span class="number">7</span>ead<span class="number">889</span>ac -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if you want to collect more than one cgroups, you should rewrite same numbers of cgroups as counter groups, e.g. -e eg1,eg2,eg1,eg2 -G c1,c1,c2,c2,  e.g. -e eg1,eg2,eg3,eg1,eg2,eg3,eg1,eg2,eg3 -G c1,c1,c1,c2,c2,c2,c3,c3,c3</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol"> sudo perf stat -e '&#123;inst_retired.any:GH,cpu_clk_unhalted.thread:GH,cpu_clk_unhalted.ref_tsc:GH,longest_lat_cache.miss:GH,offcore_requests_outstanding.l3_miss_demand_data_rd:GH,offcore_requests.l3_miss_demand_data_rd:</span>GH&#125;,</span><br><span class="line"><span class="symbol">&#123;inst_retired.any:GH,cpu_clk_unhalted.thread:GH,cpu_clk_unhalted.ref_tsc:GH,dtlb_load_misses.walk_pending:GH,dtlb_store_misses.walk_pending:GH,itlb_misses.walk_pending:GH,ept.walk_pending:</span>GH&#125;,</span><br><span class="line"><span class="symbol">&#123;inst_retired.any:GH,cpu_clk_unhalted.thread:GH,cpu_clk_unhalted.ref_tsc:GH,longest_lat_cache.miss:GH,offcore_requests_outstanding.l3_miss_demand_data_rd:GH,offcore_requests.l3_miss_demand_data_rd:</span>GH&#125;,</span><br><span class="line"><span class="symbol">&#123;inst_retired.any:GH,cpu_clk_unhalted.thread:GH,cpu_clk_unhalted.ref_tsc:GH,dtlb_load_misses.walk_pending:GH,dtlb_store_misses.walk_pending:GH,itlb_misses.walk_pending:GH,ept.walk_pending:</span>GH&#125;' </span><br><span class="line">-G </span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_6cb9fc1fdc013fbb9320e9051681f1f62f8b4367e5290ea372f134b17574dbf4</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span>,</span><br><span class="line">docker/kat<span class="built_in">a_b3f9e0421d084a3b02c811791214e932395ed463560495ccc31e7ce7ead889ac</span></span><br><span class="line"></span><br><span class="line"> -<span class="literal">a</span> -I <span class="number">5000</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="The-differnce-between-perf-kvm-stat-and-perf-stat"><a href="#The-differnce-between-perf-kvm-stat-and-perf-stat" class="headerlink" title="The differnce between perf kvm stat and perf stat"></a>The differnce between <strong>perf kvm stat</strong> and <strong>perf stat</strong></h2><p><a href="https://man7.org/linux/man-pages/man2/perf_event_open.2.html" target="_blank" rel="noopener">perf_event_open manual </a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">perf_event_attr</span> &#123;</span></span><br><span class="line">              __u32 type;                 <span class="comment">/* Type of event */</span></span><br><span class="line">              __u32 size;                 <span class="comment">/* Size of attribute structure */</span></span><br><span class="line">              __u64 config;               <span class="comment">/* Type-specific configuration */</span></span><br><span class="line"></span><br><span class="line">              <span class="keyword">union</span> &#123;</span><br><span class="line">                  __u64 sample_period;    <span class="comment">/* Period of sampling */</span></span><br><span class="line">                  __u64 sample_freq;      <span class="comment">/* Frequency of sampling */</span></span><br><span class="line">              &#125;;</span><br><span class="line"></span><br><span class="line">              __u64 sample_type;  <span class="comment">/* Specifies values included in sample */</span></span><br><span class="line">              __u64 read_format;  <span class="comment">/* Specifies values returned in read */</span></span><br><span class="line"></span><br><span class="line">              __u64 disabled       : <span class="number">1</span>,   <span class="comment">/* off by default */</span></span><br><span class="line">                    inherit        : <span class="number">1</span>,   <span class="comment">/* children inherit it */</span></span><br><span class="line">                    pinned         : <span class="number">1</span>,   <span class="comment">/* must always be on PMU */</span></span><br><span class="line">                    exclusive      : <span class="number">1</span>,   <span class="comment">/* only group on PMU */</span></span><br><span class="line">                    exclude_user   : <span class="number">1</span>,   <span class="comment">/* don't count user */</span></span><br><span class="line">                    exclude_kernel : <span class="number">1</span>,   <span class="comment">/* don't count kernel */</span></span><br><span class="line">                    exclude_hv     : <span class="number">1</span>,   <span class="comment">/* don't count hypervisor */</span></span><br><span class="line">                    exclude_idle   : <span class="number">1</span>,   <span class="comment">/* don't count when idle */</span></span><br><span class="line">                    mmap           : <span class="number">1</span>,   <span class="comment">/* include mmap data */</span></span><br><span class="line">                    comm           : <span class="number">1</span>,   <span class="comment">/* include comm data */</span></span><br><span class="line">                    freq           : <span class="number">1</span>,   <span class="comment">/* use freq, not period */</span></span><br><span class="line">                    inherit_stat   : <span class="number">1</span>,   <span class="comment">/* per task counts */</span></span><br><span class="line">                    enable_on_exec : <span class="number">1</span>,   <span class="comment">/* next exec enables */</span></span><br><span class="line">                    task           : <span class="number">1</span>,   <span class="comment">/* trace fork/exit */</span></span><br><span class="line">                    watermark      : <span class="number">1</span>,   <span class="comment">/* wakeup_watermark */</span></span><br><span class="line">                    precise_ip     : <span class="number">2</span>,   <span class="comment">/* skid constraint */</span></span><br><span class="line">                    mmap_data      : <span class="number">1</span>,   <span class="comment">/* non-exec mmap data */</span></span><br><span class="line">                    sample_id_all  : <span class="number">1</span>,   <span class="comment">/* sample_type all events */</span></span><br><span class="line">                    exclude_host   : <span class="number">1</span>,   <span class="comment">/* don't count in host */</span></span><br><span class="line">                    exclude_guest  : <span class="number">1</span>,   <span class="comment">/* don't count in guest */</span></span><br><span class="line">                    exclude_callchain_kernel : <span class="number">1</span>,</span><br><span class="line">                                          <span class="comment">/* exclude kernel callchains */</span></span><br><span class="line">                    exclude_callchain_user   : <span class="number">1</span>,</span><br><span class="line">                                          <span class="comment">/* exclude user callchains */</span></span><br><span class="line">                    mmap2          :  <span class="number">1</span>,  <span class="comment">/* include mmap with inode data */</span></span><br><span class="line">                    comm_exec      :  <span class="number">1</span>,  <span class="comment">/* flag comm events that are</span></span><br><span class="line"><span class="comment">                                             due to exec */</span></span><br><span class="line">                    use_clockid    :  <span class="number">1</span>,  <span class="comment">/* use clockid for time fields */</span></span><br><span class="line">                    context_switch :  <span class="number">1</span>,  <span class="comment">/* context switch data */</span></span><br><span class="line"></span><br><span class="line">                    __reserved_1   : <span class="number">37</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<pre><code>exclude_host (since Linux 3.2)
+       When conducting measurements that include processes running VM
+       instances (i.e., have executed a KVM_RUN ioctl(2)), only mea‐
+       sure events happening inside a guest instance.  This is only
+       meaningful outside the guests; this setting does not change
+       counts gathered inside of a guest.  Currently, this function‐
+       ality is x86 only.</code></pre></blockquote>
+<blockquote>
+<pre><code>exclude_guest (since Linux 3.2)
+         When conducting measurements that include processes running VM
+         instances (i.e., have executed a KVM_RUN ioctl(2)), do not
+         measure events happening inside guest instances.  This is only
+         meaningful outside the guests; this setting does not change
+         counts gathered inside of a guest.  Currently, this function‐
+         ality is x86 only.</code></pre></blockquote>
+<p>if the containers are running at runv environment, for example <em>kata-qemu</em></p>
+<p>for details,espically the <em>perf_event_attr</em> attributes <em>exclude_guest</em> and <em>exclude_host</em>.</p>
+<p>some examples:</p>
+<ul>
+<li>perf stat exclude guest os(default),  the cycle value equals to 20*10^6, which is incorrect, see perf_stat_exclude_guest.log</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#perf stat -e cycles -a -I 1000 -vv -C 1 -p 54927 sleep 5</span><br><span class="line">Using CPUID GenuineIntel-6-55</span><br><span class="line">intel_pt default config: tsc,mtc,mtc_period=3,psb_period=3,pt,branch</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">perf_event_attr:</span><br><span class="line">  size                             112</span><br><span class="line">  sample_type                      IDENTIFIER</span><br><span class="line">  read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING</span><br><span class="line">  disabled                         1</span><br><span class="line">  inherit                          1</span><br><span class="line">  exclude_guest                    1</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">sys_perf_event_open: pid 54927  cpu -1  group_fd -1  flags 0x8 = 3</span><br><span class="line">sys_perf_event_open: pid 54928  cpu -1  group_fd -1  flags 0x8 = 4</span><br><span class="line">sys_perf_event_open: pid 54931  cpu -1  group_fd -1  flags 0x8 = 5</span><br><span class="line">sys_perf_event_open: pid 54932  cpu -1  group_fd -1  flags 0x8 = 7</span><br><span class="line">sys_perf_event_open: pid 54957  cpu -1  group_fd -1  flags 0x8 = 8</span><br><span class="line">cycles: 0: 163568 54163 54163</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 10762722 548684965 548684965</span><br><span class="line">cycles: 0: 9167118 450593782 450593782</span><br><span class="line">cycles: 20093408 999332910 999332910</span><br><span class="line">#           time             counts unit events</span><br><span class="line">     1.000140819         20,093,408      cycles</span><br><span class="line">cycles: 0: 329527 107629 107629</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 19858838 980411641 980411641</span><br><span class="line">cycles: 0: 20321440 1018679246 1018679246</span><br><span class="line">cycles: 20416397 999865606 999865606</span><br><span class="line">     2.000282256         20,416,397      cycles</span><br><span class="line">cycles: 0: 489050 159391 159391</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 30871376 1534625512 1534625512</span><br><span class="line">cycles: 0: 28979494 1463296617 1463296617</span><br><span class="line">cycles: 19830115 998883004 998883004</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>perf stat include guest, the cycle value close to 3200* 10^6, which is correct</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># perf stat -e cycles:GH -a -I 1000 -vv -C 1 -p 54927 sleep 5</span><br><span class="line">Using CPUID GenuineIntel-6-55</span><br><span class="line">intel_pt default config: tsc,mtc,mtc_period=3,psb_period=3,pt,branch</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">perf_event_attr:</span><br><span class="line">  size                             112</span><br><span class="line">  sample_type                      IDENTIFIER</span><br><span class="line">  read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING</span><br><span class="line">  disabled                         1</span><br><span class="line">  inherit                          1</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">sys_perf_event_open: pid 54927  cpu -1  group_fd -1  flags 0x8 = 3</span><br><span class="line">sys_perf_event_open: pid 54928  cpu -1  group_fd -1  flags 0x8 = 4</span><br><span class="line">sys_perf_event_open: pid 54931  cpu -1  group_fd -1  flags 0x8 = 5</span><br><span class="line">sys_perf_event_open: pid 54932  cpu -1  group_fd -1  flags 0x8 = 7</span><br><span class="line">sys_perf_event_open: pid 54957  cpu -1  group_fd -1  flags 0x8 = 8</span><br><span class="line">cycles:GH: 0: 150607 49705 49705</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 1851603233 578636477 578636477</span><br><span class="line">cycles:GH: 0: 1349466048 421718356 421718356</span><br><span class="line">cycles:GH: 3201219888 1000404538 1000404538</span><br><span class="line">#           time             counts unit events</span><br><span class="line">     1.000141460      3,201,219,888      cycles:GH</span><br><span class="line">cycles:GH: 0: 318672 103892 103892</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 3186808454 995900872 995900872</span><br><span class="line">cycles:GH: 0: 3210871482 1003417209 1003417209</span><br><span class="line">cycles:GH: 3196778720 999017435 999017435</span><br><span class="line">     2.000294863      3,196,778,720      cycles:GH</span><br><span class="line">cycles:GH: 0: 473344 153881 153881</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 0 0 0</span><br><span class="line">cycles:GH: 0: 4914634282 1535858571 1535858571</span><br><span class="line">cycles:GH: 0: 4681607691 1463029297 1463029297</span><br><span class="line">cycles:GH: 3198716709 999619776 999619776</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>perf kvm stat exclude host, the cycle value close to 3180*10^6, which is incorrect, because it doesn’t include counters in host side</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># perf kvm  stat -e cycles -a -I 1000 -vv -C 1 -p 54927 sleep 5</span><br><span class="line">Using CPUID GenuineIntel-6-55</span><br><span class="line">intel_pt default config: tsc,mtc,mtc_period=3,psb_period=3,pt,branch</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">perf_event_attr:</span><br><span class="line">  size                             112</span><br><span class="line">  sample_type                      IDENTIFIER</span><br><span class="line">  read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING</span><br><span class="line">  disabled                         1</span><br><span class="line">  inherit                          1</span><br><span class="line">  exclude_host                     1</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">sys_perf_event_open: pid 54927  cpu -1  group_fd -1  flags 0x8 = 3</span><br><span class="line">sys_perf_event_open: pid 54928  cpu -1  group_fd -1  flags 0x8 = 4</span><br><span class="line">sys_perf_event_open: pid 54931  cpu -1  group_fd -1  flags 0x8 = 5</span><br><span class="line">sys_perf_event_open: pid 54932  cpu -1  group_fd -1  flags 0x8 = 7</span><br><span class="line">sys_perf_event_open: pid 54957  cpu -1  group_fd -1  flags 0x8 = 8</span><br><span class="line">cycles: 0: 0 50959 50959</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 1876040767 589985556 589985556</span><br><span class="line">cycles: 0: 1302552550 409661083 409661083</span><br><span class="line">cycles: 3178593317 999697598 999697598</span><br><span class="line">#           time             counts unit events</span><br><span class="line">     1.000144669      3,178,593,317      cycles</span><br><span class="line">cycles: 0: 0 104610 104610</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 3258715492 1024938302 1024938302</span><br><span class="line">cycles: 0: 3099070031 974456233 974456233</span><br><span class="line">cycles: 3179192206 999801547 999801547</span><br><span class="line">     2.000287034      3,179,192,206      cycles</span><br><span class="line">cycles: 0: 0 154490 154490</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 5007308322 1574833169 1574833169</span><br><span class="line">cycles: 0: 4529377308 1424182546 1424182546</span><br><span class="line">cycles: 3178900107 999671060 999671060</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>perf kvm stat include host, the cycle value close to 3200*10^6, which is equal to perf stat include guest</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># perf kvm --host --guest  stat -e cycles -a -I 1000 -vv -C 1 -p 54927 sleep 5</span><br><span class="line">Using CPUID GenuineIntel-6-55</span><br><span class="line">intel_pt default config: tsc,mtc,mtc_period=3,psb_period=3,pt,branch</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">perf_event_attr:</span><br><span class="line">  size                             112</span><br><span class="line">  sample_type                      IDENTIFIER</span><br><span class="line">  read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING</span><br><span class="line">  disabled                         1</span><br><span class="line">  inherit                          1</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">sys_perf_event_open: pid 54927  cpu -1  group_fd -1  flags 0x8 = 3</span><br><span class="line">sys_perf_event_open: pid 54928  cpu -1  group_fd -1  flags 0x8 = 4</span><br><span class="line">sys_perf_event_open: pid 54931  cpu -1  group_fd -1  flags 0x8 = 5</span><br><span class="line">sys_perf_event_open: pid 54932  cpu -1  group_fd -1  flags 0x8 = 7</span><br><span class="line">sys_perf_event_open: pid 54957  cpu -1  group_fd -1  flags 0x8 = 8</span><br><span class="line">cycles: 0: 156465 51514 51514</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 1697781991 530571505 530571505</span><br><span class="line">cycles: 0: 1501254716 469153401 469153401</span><br><span class="line">cycles: 3199193172 999776420 999776420</span><br><span class="line">#           time             counts unit events</span><br><span class="line">     1.000134636      3,199,193,172      cycles</span><br><span class="line">cycles: 0: 324906 105797 105797</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 3069636439 959290212 959290212</span><br><span class="line">cycles: 0: 3328363931 1040133163 1040133163</span><br><span class="line">cycles: 3199132104 999752752 999752752</span><br><span class="line">     2.000277464      3,199,132,104      cycles</span><br><span class="line">cycles: 0: 482160 156477 156477</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 0 0 0</span><br><span class="line">cycles: 0: 4697639841 1468050819 1468050819</span><br><span class="line">cycles: 0: 4898815012 1530907460 1530907460</span><br><span class="line">cycles: 3198611737 999585584 999585584</span><br></pre></td></tr></table></figure>
+
+<p>So, if you feel uncomfortable to use <em>perf kvm stat –host</em> on runv environment, you can use <em>perf stat -e event_name:GH</em> instead, although the results should be same.<br>If the containers are running at runc environment, don’t worry about it, just use <strong>perf stat</strong></p>
+<h2 id="sar-is-also-a-good-tool-to-collect-performance"><a href="#sar-is-also-a-good-tool-to-collect-performance" class="headerlink" title="sar is also a good tool to collect performance"></a>sar is also a good tool to collect performance</h2><p>same as perf+no-aggr on utilization </p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sar -P <span class="built_in">ALL</span> -o sar.<span class="keyword">data</span></span><br></pre></td></tr></table></figure>
+
+<p>transfer the binary data into unix-format readable data</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">sadf</span> <span class="selector-tag">-d</span> <span class="selector-tag">-P</span> <span class="selector-tag">ALL</span>  <span class="selector-tag">sar</span><span class="selector-class">.data</span> &gt; <span class="selector-tag">sar</span><span class="selector-class">.csv</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">pouch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">kata</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">conatiner</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">perf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sar</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cgroup</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cycles</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/04/perf-stat/">show all 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-container-communication-coss-host-by-swarm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/04/container-communication-coss-host-by-swarm/">Cross host container communication by swarm</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/04/container-communication-coss-host-by-swarm/" class="archive-article-date">
+  	<time datetime="2020-09-04T01:54:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>start swarm service on server 1<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker swarm init</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">info</span> </span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="attr">Swarm:</span> <span class="string">active</span></span><br><span class="line"><span class="attr"> NodeID:</span> <span class="string">mjlxz2xwr8n4nd8pr4abs90cf</span></span><br><span class="line"> <span class="string">Is</span> <span class="attr">Manager:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr"> ClusterID:</span> <span class="string">mlbjnejhau2knc9octau5idnn</span></span><br><span class="line"><span class="attr"> Managers:</span> <span class="number">1</span></span><br><span class="line"><span class="attr"> Nodes:</span> <span class="number">4</span></span><br><span class="line"><span class="attr"> Orchestration:</span></span><br><span class="line">  <span class="string">Task</span> <span class="string">History</span> <span class="string">Retention</span> <span class="attr">Limit:</span> <span class="number">5</span></span><br><span class="line"><span class="attr"> Raft:</span></span><br><span class="line">  <span class="string">Snapshot</span> <span class="attr">Interval:</span> <span class="number">10000</span></span><br><span class="line">  <span class="string">Number</span> <span class="string">of</span> <span class="string">Old</span> <span class="string">Snapshots</span> <span class="string">to</span> <span class="attr">Retain:</span> <span class="number">0</span></span><br><span class="line">  <span class="string">Heartbeat</span> <span class="attr">Tick:</span> <span class="number">1</span></span><br><span class="line">  <span class="string">Election</span> <span class="attr">Tick:</span> <span class="number">10</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>create an <strong>overaly</strong> network</li>
+</ul>
+<p>To create an overlay network for use with swarm services, use a command like the following:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> network </span>create -d overlay my-overlay</span><br></pre></td></tr></table></figure>
+
+<p>To create an overlay network which can be used by swarm services or standalone containers to communicate with other standalone containers running on other Docker daemons, add the <em>–attachable</em> flag:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> network </span>create -d overlay --attachable </span><br><span class="line">my-attachable-overlay</span><br></pre></td></tr></table></figure>
+
+<h2 id="other-servers"><a href="#other-servers" class="headerlink" title="other servers"></a>other servers</h2><ul>
+<li>join the swarm</li>
+</ul>
+<p>docker swarm join –token SWMTKN-1-3vyjwjv6inlxr0wv1mmibbwzo5qt6cmultg2losufxd0nbi6z5-7veb80yv1im6ii8oma5q1k1s4 172.16.190.79:2377</p>
+<p>then you can find server2 automatically join the overlay net</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">780463da98af        bridge              bridge              <span class="built_in">local</span></span><br><span class="line">d0e6aefdfb8a        docker_gwbridge     bridge              <span class="built_in">local</span></span><br><span class="line">d45984c66fd5        host                host                <span class="built_in">local</span></span><br><span class="line">jaf4kx0gku62        ingress             overlay             swarm</span><br><span class="line">20855b96e0b1        none                null                <span class="built_in">local</span></span><br><span class="line">6qmeomevipgt     my-attachable-overlay  overlay             swarm</span><br></pre></td></tr></table></figure>
+
+<p>and you can check in server1</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-tag">docker</span> <span class="selector-tag">node</span> <span class="selector-tag">ls</span></span><br><span class="line"><span class="selector-tag">ID</span>                            <span class="selector-tag">HOSTNAME</span>                  <span class="selector-tag">STATUS</span>              <span class="selector-tag">AVAILABILITY</span>        <span class="selector-tag">MANAGER</span> <span class="selector-tag">STATUS</span>      <span class="selector-tag">ENGINE</span> <span class="selector-tag">VERSION</span></span><br><span class="line"><span class="selector-tag">mjlxz2xwr8n4nd8pr4abs90cf</span> *   <span class="selector-tag">iZbp1bzbzd1dmznk9xxxxxx</span>   <span class="selector-tag">Ready</span>               <span class="selector-tag">Active</span>              <span class="selector-tag">Leader</span>              18<span class="selector-class">.06</span><span class="selector-class">.0-ce</span></span><br><span class="line"><span class="selector-tag">uf041tg0obzprppredut27bgg</span>     <span class="selector-tag">iZbp1bzbzd1dmznk9xxxxxx</span>   <span class="selector-tag">Ready</span>               <span class="selector-tag">Active</span>                                  18<span class="selector-class">.06</span><span class="selector-class">.0-ce</span></span><br><span class="line"><span class="selector-tag">t3380b55qfen3fdtoj10x8lcf</span>     <span class="selector-tag">iZbp1bzbzd1dmznk9xxxxxx</span>   <span class="selector-tag">Ready</span>               <span class="selector-tag">Active</span>                                  18<span class="selector-class">.06</span><span class="selector-class">.0-ce</span></span><br><span class="line"><span class="selector-tag">gzzalp8thajd0w55rrm5pvv3z</span>     <span class="selector-tag">iZbp1bzbzd1dmznk9xxxxxx</span>   <span class="selector-tag">Ready</span>               <span class="selector-tag">Active</span>                                  18<span class="selector-class">.06</span><span class="selector-class">.0-ce</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>start container with the overlay net on server2</li>
+</ul>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">docker</span> <span class="comment">run</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">test1</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">hostname</span> <span class="comment">name1</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">runtime</span> <span class="comment">runc</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">net=my</span><span class="literal">-</span><span class="comment">attachable</span><span class="literal">-</span><span class="comment">overlay</span></span><br><span class="line"><span class="comment"></span> <span class="literal">-</span><span class="literal">-</span><span class="comment">ulimit</span> <span class="comment">nofile=102400:102400</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">cpus</span> <span class="comment">30</span> <span class="literal">-</span><span class="comment">d</span> <span class="literal">-</span><span class="comment">P</span> <span class="literal">-</span><span class="comment">p</span> <span class="comment">50070:50070</span> <span class="literal">-</span><span class="comment">p</span> <span class="comment">8088:8088</span>  <span class="comment">docker</span><span class="literal">-</span><span class="comment">images1</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, containers on servers2 can access containers on server1</p>
+<ul>
+<li><p>server2 can also leave  swarm node </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker swarm leave</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>when alll the nodes leave swarm node,server 1 can stop/remove swarm</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker swarm leave</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ul>
+<li><p><a href="https://docs.docker.com/engine/reference/commandline/swarm_init/" target="_blank" rel="noopener">docker swarm doc</a></p>
+</li>
+<li><p><a href="https://docs.docker.com/network/overlay/" target="_blank" rel="noopener">docker network doc</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">etcd</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flannel</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">overlay</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">swarm</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">container</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/04/container-communication-coss-host-by-swarm/">show all 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-container-communication-corss-host-by-flannel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/02/container-communication-corss-host-by-flannel/">Cross host container communication by flannel</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/02/container-communication-corss-host-by-flannel/" class="archive-article-date">
+  	<time datetime="2020-09-02T07:54:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/alibaba/pouch" target="_blank" rel="noopener">pouch container</a> doesn’t support <strong>swarm</strong> mode, so you can’t use <strong>docker swarm</strong> advantages to build <strong>overlay</strong> network if you lxc environment is pouch or sth else</p>
+<ul>
+<li><p>install flannel on each server</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> flannel -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config flannel etcd url</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/flanneld</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Flanneld configuration options</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># etcd url location.  Point this to the server where etcd runs</span></span><br><span class="line"><span class="string">FLANNEL_ETCD_ENDPOINTS="http://172.16.190.73:2379"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># etcd config key.  This is the configuration key that flannel queries</span></span><br><span class="line"><span class="comment"># For address range assignment</span></span><br><span class="line"><span class="string">FLANNEL_ETCD_PREFIX="/atomic.io/network"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Any additional options that you want to pass</span></span><br><span class="line"><span class="comment">#FLANNEL_OPTIONS=""</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>remeber to set the container ip range on etcd server</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etcdctl <span class="keyword">set</span> /atomic.io/network/config '&#123; <span class="string">"Network"</span>: <span class="string">"192.168.0.0/16"</span> &#125;<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+<p>  or</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec yl-etcd   etcdctl <span class="keyword">set</span> /atomic.io/network/config '&#123; <span class="string">"Network"</span>: <span class="string">"192.168.0.0/16"</span> &#125;<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>start service</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="builtin-name">enable</span> flanneld</span><br><span class="line">systemctl start flanneld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config pouch or docker, update gateway</p>
+</li>
+</ul>
+<p>pouch doesn’t support swarm, so we use pouch container mannager as example</p>
+<p>start pouchd or dockerd</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /<span class="keyword">run</span><span class="bash">/flannel/subnet.env</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat /run/flannel/subnet.env</span><br><span class="line"><span class="built_in">..</span>.</span><br><span class="line"><span class="attribute">FLANNEL_NETWORK</span>=192.168.0.0/16</span><br><span class="line"><span class="attribute">FLANNEL_SUBNET</span>=192.168.38.1/24</span><br><span class="line"><span class="attribute">FLANNEL_MTU</span>=1472</span><br><span class="line"><span class="attribute">FLANNEL_IPMASQ</span>=<span class="literal">false</span></span><br><span class="line"><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop pouch</span><br><span class="line"></span><br><span class="line">pouchd --bip=<span class="variable">$&#123;FLANNEL_SUBNET&#125;</span> --mtu=<span class="variable">$&#123;FLANNEL_MTU&#125;</span> --default-gateway 192.168.38.1 &amp;</span><br><span class="line"></span><br><span class="line">pouchd --bip=<span class="variable">$&#123;FLANNEL_SUBNET&#125;</span> --mtu=<span class="variable">$&#123;FLANNEL_MTU&#125;</span> --default-gateway 192.168.65.1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>or you can update pouchd or dockerd <a href="https://github.com/alibaba/pouch/blob/master/docs/commandline/pouch_updatedaemon.md" target="_blank" rel="noopener">update pouch daemon</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pouch updatedaemon --debug=<span class="literal">true</span> --bip=<span class="variable">$&#123;FLANNEL_SUBNET&#125;</span> --mtu=<span class="variable">$&#123;FLANNEL_MTU&#125;</span> --default-gateway 192.168.38.1 </span><br><span class="line"></span><br><span class="line">pouch updatedaemon --bip 192.168.38.1/24 --default-gateway 192.168.38.1 --offline=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>or you can update the default config and restart pouch</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"volume-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"network-config"</span>: &#123;</span><br><span class="line">        <span class="attr">"bridge-config"</span>: &#123;</span><br><span class="line">            <span class="attr">"bip"</span>: <span class="string">"192.168.38.1/24"</span>,</span><br><span class="line">            <span class="attr">"default-gateway"</span>: <span class="string">"192.168.38.1"</span>,</span><br><span class="line">            <span class="attr">"iptables"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"ipforward"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"userland-proxy"</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"cri-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"TLS"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"default-log-config"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"registry-service"</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">"add-runtime"</span>: &#123;</span><br><span class="line">        <span class="attr">"runv"</span>: &#123;</span><br><span class="line">            <span class="attr">"path"</span>: <span class="string">"/opt/kata/bin/kata-runtime"</span>,</span><br><span class="line">            <span class="attr">"runtimeArgs"</span>: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>for each host, update ip tables input and output rules</li>
+</ul>
+<figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -<span class="keyword">P</span> INPUT <span class="keyword">ACC</span>EPT</span><br><span class="line">iptables -<span class="keyword">P</span> FORWARD <span class="keyword">ACC</span>EPT</span><br><span class="line">iptables -F</span><br><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">etcd</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flannel</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">overlay</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">pouch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">container</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/02/container-communication-corss-host-by-flannel/">show all 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-etcd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/02/etcd/">etcd</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/02/etcd/" class="archive-article-date">
+  	<time datetime="2020-09-02T07:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Start-a-etcd"><a href="#Start-a-etcd" class="headerlink" title="Start  a etcd"></a>Start  a etcd</h1><p>clean data</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /tmp/etcd-data.tmp</span><br></pre></td></tr></table></figure>
+
+<p>deploy etcd</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  -d \</span><br><span class="line">  -p 2379:2379 \</span><br><span class="line">  -p 2380:2380 \</span><br><span class="line">  -p 4001:4001 \</span><br><span class="line">  -p 7001:7001 \</span><br><span class="line">  -v /tmp/etcd-data.tmp:/etcd-data \</span><br><span class="line">  --name yl-etcd \</span><br><span class="line">  elcolio/etcd:latest \</span><br><span class="line"> --name s1    --data-dir /etcd-data    --listen-client-urls http://0.0.0.0:2379    --advertise-client-urls http://0.0.0.0:2379    --listen-peer-urls http://0.0.0.0:2380    --initial-advertise-peer-urls http://0.0.0.0:2380    --initial-cluster s1=http://0.0.0.0:2380    --initial-cluster-token tkn    --initial-cluster-state new</span><br></pre></td></tr></table></figure>
+
+<p>set some key-value store, and test get</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> yl-etcd   etcdctl <span class="built_in">set</span> /atomic.io/network/config <span class="string">'&#123; "Network": "192.168.0.0/16" &#125;'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> yl-etcd   etcdctl get /atomic.io/network/config</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">etcd</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flannel</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/02/etcd/">show all 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-avx512" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +910,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>dasds</p>
+<p>scdscds</p>
+<p>xscsd</p>
+
       
 
       
@@ -185,7 +925,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/avx512/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/21/avx512/">show all 展开全文 >></a>
         </p>
       
 
@@ -247,7 +987,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/kaggle/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/21/kaggle/">show all 展开全文 >></a>
         </p>
       
 
@@ -309,69 +1049,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-etcd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/etcd/">etcd</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/21/etcd/" class="archive-article-date">
-  	<time datetime="2019-06-21T05:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/etcd/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/21/git/">show all 展开全文 >></a>
         </p>
       
 
@@ -433,7 +1111,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/docker/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/21/docker/">show all 展开全文 >></a>
         </p>
       
 
@@ -506,307 +1184,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/xgboost/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LR" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/LR/">LR</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/21/LR/" class="archive-article-date">
-  	<time datetime="2019-06-21T05:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/LR/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/IF/">IF</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/21/IF/" class="archive-article-date">
-  	<time datetime="2019-06-21T05:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Isolate Forest</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Desion Tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/IF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gdbt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/gdbt/">gdbt</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/21/gdbt/" class="archive-article-date">
-  	<time datetime="2019-06-21T05:21:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Desicion Tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/gdbt/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/RF/">RF</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/21/RF/" class="archive-article-date">
-  	<time datetime="2019-06-21T05:20:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">boosting</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/RF/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/21/xgboost/">show all 展开全文 >></a>
         </p>
       
 
@@ -850,7 +1228,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Yi Li
+    		&copy; 2020 Yi Li
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -901,15 +1279,15 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">Archive</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">Archive目录</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Links</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Links友链</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">Aboutme</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">Aboutme我</a></li>
       
         
     </ul>
@@ -999,6 +1377,66 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">etcd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">etcd,flannel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">flannel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">overlay</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">pouch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">swarm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">kata</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">conatiner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">perf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sar</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cgroup</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cycles</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">container</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cpuset</a>
               </li>
             
             <div class="clearfix"></div>

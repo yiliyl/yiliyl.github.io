@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/09/04/kata-container/</loc>
+    <lastmod>2020-09-04</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/09/04/perf-stat/</loc>
+    <lastmod>2020-09-04</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/09/04/container-communication-coss-host-by-swarm/</loc>
+    <lastmod>2020-09-04</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/09/02/container-communication-corss-host-by-flannel/</loc>
+    <lastmod>2020-09-04</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/09/02/etcd/</loc>
+    <lastmod>2020-09-04</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/06/21/avx512/</loc>
+    <lastmod>2020-09-02</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/06/21/gdbt/</loc>
+    <lastmod>2019-06-27</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/06/21/kafka/</loc>
+    <lastmod>2019-06-25</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2019/06/21/prometheus/</loc>
     <lastmod>2019-06-24</lastmod>
   </url>  <url>
@@ -10,16 +34,10 @@
     <loc>http://yoursite.com/2019/06/21/hello-world/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2019/06/21/avx512/</loc>
-    <lastmod>2019-06-21</lastmod>
-  </url>  <url>
     <loc>http://yoursite.com/2019/06/21/kaggle/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2019/06/21/git/</loc>
-    <lastmod>2019-06-21</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2019/06/21/etcd/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2019/06/21/docker/</loc>
@@ -40,13 +58,7 @@
     <loc>http://yoursite.com/2019/06/21/IF/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2019/06/21/gdbt/</loc>
-    <lastmod>2019-06-21</lastmod>
-  </url>  <url>
     <loc>http://yoursite.com/2019/06/21/EM/</loc>
-    <lastmod>2019-06-21</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2019/06/21/kafka/</loc>
     <lastmod>2019-06-21</lastmod>
   </url>
 </urlset>
