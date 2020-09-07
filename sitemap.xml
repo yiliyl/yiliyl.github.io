@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/09/07/tpch-hadoop-hive-environment-setup/</loc>
+    
+    <lastmod>2020-09-07T06:42:01.150Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/09/04/container-communication-coss-host-by-swarm/</loc>
+    
+    <lastmod>2020-09-07T01:18:09.666Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/09/04/kata-container/</loc>
     
     <lastmod>2020-09-04T08:09:41.168Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/2020/09/04/perf-stat/</loc>
     
     <lastmod>2020-09-04T07:59:21.732Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/09/04/container-communication-coss-host-by-swarm/</loc>
-    
-    <lastmod>2020-09-04T07:23:45.488Z</lastmod>
     
   </url>
   

@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="路过看看">
 <meta property="og:description" content="start swarm service on server 11docker swarm init    12345678910111213141516docker info ...Swarm: active NodeID: mjlxz2xwr8n4nd8pr4abs90cf Is Manager: true ClusterID: mlbjnejhau2knc9octau5idnn Manage">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-09-04T07:23:45.488Z">
+<meta property="og:updated_time" content="2020-09-07T01:18:09.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cross host container communication by swarm">
 <meta name="twitter:description" content="start swarm service on server 11docker swarm init    12345678910111213141516docker info ...Swarm: active NodeID: mjlxz2xwr8n4nd8pr4abs90cf Is Manager: true ClusterID: mlbjnejhau2knc9octau5idnn Manage">
@@ -74,6 +74,8 @@
 				<li><a href="/tags/flannel/">Flannel</a></li>
 	        
 				<li><a href="/tags/swarm">Swarm</a></li>
+	        
+				<li><a href="/tags/tpch">Tpch</a></li>
 	        
 			</ul>
 		</nav>
@@ -143,6 +145,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -163,19 +167,21 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">Home</a></li>
+					<li style="width: 12.5%"><a href="/">Home</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/docker/">Docker</a></li>
+					<li style="width: 12.5%"><a href="/tags/docker/">Docker</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/kata">Kata</a></li>
+					<li style="width: 12.5%"><a href="/tags/kata">Kata</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/prometheus/">Prometheous</a></li>
+					<li style="width: 12.5%"><a href="/tags/prometheus/">Prometheous</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/zookeeper">ZooKeeper</a></li>
+					<li style="width: 12.5%"><a href="/tags/zookeeper">ZooKeeper</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/flannel/">Flannel</a></li>
+					<li style="width: 12.5%"><a href="/tags/flannel/">Flannel</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/swarm">Swarm</a></li>
+					<li style="width: 12.5%"><a href="/tags/swarm">Swarm</a></li>
+		        
+					<li style="width: 12.5%"><a href="/tags/tpch">Tpch</a></li>
 		        
 				</ul>
 			</nav>
@@ -227,9 +233,10 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> network </span>create -d overlay --attachable </span><br><span class="line">my-attachable-overlay</span><br></pre></td></tr></table></figure>
 
 <h2 id="other-servers"><a href="#other-servers" class="headerlink" title="other servers"></a>other servers</h2><ul>
-<li>join the swarm</li>
+<li>join the swarm<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">docker</span> <span class="selector-tag">swarm</span> <span class="selector-tag">join</span> <span class="selector-tag">--token</span> <span class="selector-tag">SWMTKN-1-3vyjwjv6inlxr0wv1mmibbwzo5qt6cmultg2losufxd0nbi6z5-7veb80yv1im6ii8oma5q1k1s4</span> 172<span class="selector-class">.16</span><span class="selector-class">.190</span><span class="selector-class">.79</span><span class="selector-pseudo">:2377</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<p>docker swarm join –token SWMTKN-1-3vyjwjv6inlxr0wv1mmibbwzo5qt6cmultg2losufxd0nbi6z5-7veb80yv1im6ii8oma5q1k1s4 172.16.190.79:2377</p>
 <p>then you can find server2 automatically join the overlay net</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">780463da98af        bridge              bridge              <span class="built_in">local</span></span><br><span class="line">d0e6aefdfb8a        docker_gwbridge     bridge              <span class="built_in">local</span></span><br><span class="line">d45984c66fd5        host                host                <span class="built_in">local</span></span><br><span class="line">jaf4kx0gku62        ingress             overlay             swarm</span><br><span class="line">20855b96e0b1        none                null                <span class="built_in">local</span></span><br><span class="line">6qmeomevipgt     my-attachable-overlay  overlay             swarm</span><br></pre></td></tr></table></figure>
 
@@ -644,6 +651,34 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">cpuset</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">TPCH</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">workloads</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">workload</a>
               </li>
             
             <div class="clearfix"></div>
